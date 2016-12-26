@@ -1,24 +1,32 @@
-# Kickofflabs
+# kickofflabs-ex
 
-**TODO: Add description**
+A simple tool to fetch or create new leads on your [KickoffLabs](http://kickofflabs.com) campaign.
 
-## Installation
+### Example Usage
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+**IMPORTANt: Set Your List ID**
 
-  1. Add `kickofflabs` to your list of dependencies in `mix.exs`:
+In the `config/config.exs` set your appropriate `list_id`.
 
-    ```elixir
-    def deps do
-      [{:kickofflabs, "~> 0.1.0"}]
-    end
-    ```
+**Create New Lead**
 
-  2. Ensure `kickofflabs` is started before your application:
+To create a new lead, simply call `Kickofflabs.Lead.new` and provide a keyword list which must include an `email`. You can append whatever custom fields you want that lead to have.
 
-    ```elixir
-    def application do
-      [applications: [:kickofflabs]]
-    end
-    ```
+```
+Kickofflabs.Lead.new(email: "test@example.com", your_custom_field: "NYC")
+```
 
+**Get an Existing Lead**
+
+To get an existing lead, simply call `Kickofflabs.Lead.get` with an `email` OR `social_id`.
+
+```
+Kickofflabs.Lead.get(email: "test@example.com")
+
+Kickofflabs.Lead.get(social_id: "DCD8B")
+```
+
+### Todo
+
+1. Return a Lead struct opposed to HTTPosion response
+2. Create hex package
